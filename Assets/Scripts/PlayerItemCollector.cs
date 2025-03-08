@@ -25,6 +25,11 @@ public class PlayerItemCollector : MonoBehaviour
                     item.Pickup();
 
                     Destroy(collision.gameObject);
+
+                    if (PrefabManager.Instance != null)
+                    {
+                        PrefabManager.Instance.ItemRecogido();
+                    }
                 }
             }
         }
