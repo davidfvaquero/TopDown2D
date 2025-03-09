@@ -594,7 +594,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'TAL 2:    EL VIDEOJUEGO'
+  m_text: 'Recoger 2:    EL VIDEOJUEGO'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7da8d9ce16e66ca428279a6dd7db5168, type: 2}
   m_sharedMaterial: {fileID: 6136819683006382396, guid: 7da8d9ce16e66ca428279a6dd7db5168, type: 2}
