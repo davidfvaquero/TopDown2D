@@ -12,11 +12,69 @@ public class PrefabManager : MonoBehaviour
 
     private int itemsRecolectados;
     private int totalItemsInicial;
+
+    void Start()
+    {
+        Debug.Log("PrefabManager Start");
+
+        if (victoryPanel == null)
+        {
+            Debug.Log("Buscando VictoryPanel dentro de UI...");
+
+            GameObject ui = GameObject.Find("UI"); // Buscar el objeto UI
+            if (ui != null)
+            {
+                Debug.Log("UI encontrado correctamente.");
+                victoryPanel = ui.transform.Find("VictoryPanel")?.gameObject;
+            }
+        }
+
+        if (victoryPanel != null)
+        {
+            Debug.Log("VictoryPanel encontrado correctamente.");
+            victoryPanel.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("VictoryPanel sigue sin encontrarse.");
+        }
+    }
     void Awake()
     {
+        Debug.Log("PrefabManager Awake");
+
         Instance = this;
         itemsRecolectados = 0; // Inicializamos en 0
+
+        // Buscar VictoryPanel directamente por su nombre en la jerarquía
+        if (victoryPanel == null)
+        {
+            victoryPanel = GameObject.Find("VictoryPanel");
+        }
+
+        if (victoryPanel == null)
+        {
+            Debug.LogError(" VictoryPanel no encontrado en la escena.");
+        }
+        else
+        {
+            victoryPanel.SetActive(false);
+
+            // Buscar el botón dentro de VictoryPanel
+            nextLevelButton = victoryPanel.GetComponentInChildren<Button>();
+        }
+
+        if (nextLevelButton == null)
+        {
+            Debug.LogError(" Next Level Button no encontrado en VictoryPanel.");
+        }
+        else
+        {
+            Debug.Log("Next Level Button encontrado.");
+        }
+
         totalItemsInicial = GameObject.FindGameObjectsWithTag("Item").Length;
+        Debug.Log($"Total de items en la escena: {totalItemsInicial}");
 
         ConfigureUI();
     }
@@ -57,6 +115,11 @@ public class PrefabManager : MonoBehaviour
         {
             victoryPanel.SetActive(true);
             Time.timeScale = 0f;
+            Debug.Log("Pantalla de victoria mostrada.");
+        }
+        else
+        {
+            Debug.LogError("VictoryPanel no está asignado.");
         }
     }
 
