@@ -77,7 +77,16 @@ public class InventoryController : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        InitializeSlots();
+        GameObject newInventoryPanel = GameObject.Find("UI/Menu/Pages/InventoryPage");
+        if (newInventoryPanel != null)
+        {
+            inventoryPanel = newInventoryPanel;
+            InitializeSlots();
+        }
+        else
+        {
+            Debug.LogWarning("InventoryPage no encontrado en la nueva escena.");
+        }
     }
 
     void OnDestroy()
